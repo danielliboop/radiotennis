@@ -1,0 +1,22 @@
+{
+  "name": "radiotennis",
+  "version": "1.0.0",
+  "description": "radiotennis game",
+  "main": "radiotennis.js",
+  "scripts": {
+    "test": "npm install express --save"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielliboop/radiotennis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielliboop/radiotennis/issues"
+  },
+  "homepage": "https://github.com/danielliboop/radiotennis#readme",
+  "dependencies": {
+    "socket.io": "^3.0.1"
+  }
+}
