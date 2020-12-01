@@ -80,8 +80,6 @@ io.sockets.on("connection", function(socket){
 		console.log("PRIVATE ROOMS: ", private_rooms);
 	});
 
-
-
 	socket.on("join_room", function(data){
 		if(data["user"] == undefined){
 			io.sockets.emit("not_logged_in");
