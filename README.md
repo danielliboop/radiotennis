@@ -6,3 +6,7 @@ git pull
 git add .
 git commit -m "<message>"
 git push
+
+how to run locally:
+npm server.js
+open browser, go to localhost:3456
