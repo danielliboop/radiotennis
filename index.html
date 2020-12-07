@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-      <title>Auxil.io</title>
+      <title>Auxill.io</title>
       <script src="/socket.io/socket.io.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
       <link href="/style.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
       <script type="text/javascript">
 
@@ -286,7 +288,7 @@
                         var dm = $('<button/>', {
                             text: "dm", //set text 1 to 10
                             id: r,
-                            class: "btn btn-outline-primary btn-sm",
+                            class: "btn btn-primary btn-sm",
                             click: (function(){
                                 private_message(this);
                             })
@@ -300,7 +302,7 @@
                     var kick = $('<button/>', {
                             text: "kick", //set text 1 to 10
                             id: r,
-                            class: "btn btn-outline-primary btn-sm",
+                            class: "btn btn-primary btn-sm",
                             click: (function(){
                                 kick_user(this);
                             })
@@ -312,7 +314,7 @@
                         var ban = $('<button/>', {
                                 text: "unban", //set text 1 to 10
                                 id: r,
-                                class: "btn btn-outline-primary btn-sm",
+                                class: "btn btn-primary btn-sm",
                                 click: (function(){
                                     unban_user(this);
                                 })
@@ -326,7 +328,7 @@
                         var ban = $('<button/>', {
                                 text: "ban", //set text 1 to 10
                                 id: r,
-                                class: "btn btn-outline-primary btn-sm",
+                                class: "btn btn-primary btn-sm",
                                 click: (function(){
                                     ban_user(this);
                                 })
@@ -368,7 +370,7 @@
             var send = $('<button/>', {
                 text: "send", //set text 1 to 10
                 id: button.id,
-                class: "btn btn-outline-primary btn-sm",
+                class: "btn btn-primary btn-sm",
                 click: (function(){
                     send_private_message(this);
                 })
@@ -411,10 +413,20 @@
 
     <body>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        <img src="/assets/title.png" alt="Let's Play Auxill.io!" width="500" height="500">
+                        <p>1 billion players currently online</p>
+                    </div>
+        </div>
+        </div>
+
         <div class = "login">
 
             <input type="text" id="curr_user"/>
-            <button type="button" class="btn btn-outline-primary btn-sm" onclick="add_user()">Login</button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="add_user()">Login</button>
             <div class = 'incorrect-login'></div>
             <br>
 
@@ -423,16 +435,17 @@
 
         <div class = "container">
             <div class = "row">
-                <div class = "col-sm">
+                
+                <!--ad placeholder--> 
+                <div class = "col-3 bg-info">
+                    ad
+                </div>
 
+                <!--Create a Room-->
+                <div class = "col-6 bg-light"> 
+                    <h1 class= "text-center font-weight-bold bg-secondary" id = "new_room_head"> New Room </h1>
                     <div class = "lobby">
-
-                        <h1 id = "room_list_head"> Rooms </h1>
-                        <div id="room_list" class="pre-scrollable">
-                        </div>
-                        <br>
-                        <hr>
-
+                        <p class = "text-center">
                         <input type="text" id="create_room"/> <br>
                         <input type="checkbox" id="private">Private <br>
 
@@ -442,39 +455,116 @@
                         <input type="radio" name="color" value="yellow" id="yellow" /> <label for="yellow">Yellow</label> <br>
 
 
-                        <button type="button" class="btn btn-outline-primary btn-sm" onclick="create_room()">Create Room</button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="create_room()">Create Room</button>
                         <div class = 'incorrect-room'></div>
                         <br>
+                        </p>
                     </div>
                 </div>
 
-                <div class="col-7">
-
-
+                <!--Chat-->
+                <div class = "col-3 bg-primary"> 
                     <div class = "room">
 
-                        <div class = "room-name"></div>
+                        <div class = "room-name font-weight-bold"></div>
 
                         <div class="pre-scrollable" id="chatlog"></div>
 
                         <input type="text" id="message_input"/>
-                        <button type="button" class="btn btn-outline-primary btn-sm" onclick="sendMessage()">Send</button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="sendMessage()">Send</button>
                         <input type="checkbox" id="bold"> Bold
                         <input type="checkbox" id="italics"> Italics
 
                     </div>
                 </div>
 
-                <div class = "col-sm">
-                    <h1 id = "user_list_head"> Users </h1>
-                    <div class = 'pre-scrollable' id="user_list"> </div>
-                    <input type="text" id="dm_input"/>
-                    <div id = dm_submit></div>
-                    <br>
-                    <h1 id = "banned_user_list_head"> Banned Users </h1>
-                    <div class = 'pre-scrollable' id="banned_user_list"> </div>
-                </div>
+            </div>
 
+            <div class = "row">
+                <div class = "col-12 bg-white text-center"> ad
+                    <div class = "row">
+                        <!--ad placeholder-->
+                        <div class = "col-3 bg-info"> 
+                            ad
+                        </div>
+                        
+                        <!--Rooms-->
+                        <div class = "col-6 bg-light"> 
+                            <div class = "lobby">
+                                <h1 class="text-center font-weight-bold bg-primary" id = "room_list_head"> Rooms </h1>
+                                <div id="room_list" class="pre-scrollable text-center">
+                                </div>
+                                <br>
+                                <hr>
+                            </div>
+
+                            <!--accordion-->
+                            <div class="accordion" id="accordionExample275">
+                                <div class="card z-depth-0 bordered">
+                                  <div class="card-header" id="headingOne2">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne2"
+                                        aria-expanded="true" aria-controls="collapseOne2">
+                                        About
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="collapseOne2" class="collapse" aria-labelledby="headingOne2"
+                                    data-parent="#accordionExample275">
+                                    <div class="card-body">
+                                      game description
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card z-depth-0 bordered">
+                                  <div class="card-header" id="headingTwo2">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+                                        How to Play
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2"
+                                    data-parent="#accordionExample275">
+                                    <div class="card-body">
+                                      gameplay description
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card z-depth-0 bordered">
+                                  <div class="card-header" id="headingThree2">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
+                                        Contact Us
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="collapseThree2" class="collapse" aria-labelledby="headingThree2"
+                                    data-parent="#accordionExample275">
+                                    <div class="card-body">
+                                      email and social media
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+
+                        <!--users-->
+                        <div class = "col-3 bg-secondary"> 
+                            <p class = "text-center">
+                            <h1 class = "text-center font-weight-bold bg-light" id = "user_list_head"> Users </h1>
+                            <div class = 'pre-scrollable' id="user_list"> </div>
+                            <input type="text" id="dm_input"/>
+                            <div id = dm_submit></div>
+                            <br>
+                            <h1 id = "banned_user_list_head"> Banned Users </h1>
+                            <div class = 'pre-scrollable' id="banned_user_list"> </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
