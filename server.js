@@ -52,7 +52,7 @@ io.sockets.on("connection", function(socket){
 		if (color == undefined) {
 			color = "white";
 		}
-		if(data["user"] == undefined){
+		if(data["user"] == undefined){``
 			io.sockets.emit("not_logged_in");
 		}
 		else if(data["room"] in rooms){
