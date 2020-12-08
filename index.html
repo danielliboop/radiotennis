@@ -4,6 +4,7 @@
       <title>Auxill.io</title>
       <script src="/socket.io/socket.io.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://sdk.scdn.co/spotify-player.js"></script>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
       <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -12,9 +13,44 @@
 
       <script type="text/javascript">
 
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = 'BQAV9ELExanvUDOx-cOAvlYGg2p-7elicDpjbMCWJZVLEaOg4SObTZPuuz5w6Tms6LcxpDR2p4iayYNe3cFAiIunf8o9I7rFb0cSCz-iLPxS-fPpYi9T_zOlLCCJsYX55T4TJVo-_FYk-rRdIyoV8YRm1PMQ9KjNGX_m';
+            const player = new Spotify.Player({
+              name: 'Web Playback SDK Quick Start Player',
+              getOAuthToken: cb => { cb(token); }
+            });
+
+            // Error handling
+            player.addListener('initialization_error', ({ message }) => { console.error(message); });
+            player.addListener('authentication_error', ({ message }) => { console.error(message); });
+            player.addListener('account_error', ({ message }) => { console.error(message); });
+            player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+            // Playback status updates
+            player.addListener('player_state_changed', state => { console.log(state); });
+
+            // Ready
+            player.addListener('ready', ({ device_id }) => {
+              console.log('Ready with Device ID', device_id);
+            });
+
+            // Not Ready
+            player.addListener('not_ready', ({ device_id }) => {
+              console.log('Device ID has gone offline', device_id);
+            });
+
+            // Connect to the player!
+            player.connect();
+          };
+
         let curr_user;
         let curr_room;
         let socketio = io.connect();
+        var spotify_client_id = "d6593397d36a4419bd3b52adb7f610ff";
+        var spotify_client_secret = "75f8a38e480f48c4b881f40b4e3776be";
+        var spotify_redirect_uri = "http://auxill.io";
+        var scope = "user-read-private user-read-currently-playing streaming playlist-read-private playlist-read-collaborative"
+
 
         socketio.on("username_taken", function() {
             $('.incorrect-login').empty();
@@ -345,6 +381,32 @@
             }
         }
 
+        /**
+         * Generates a random string containing numbers and letters
+         * @param  {number} length The length of the string
+         * @return {string} The generated string
+         */
+         function generateRandomString(length) {
+            var text = '';
+            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+            for (var i = 0; i < length; i++) {
+              text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+            return text;
+          };
+
+        function connect_to_spotify(){
+            console.log("HITTING CONNECT_TO_SPOTIFY")
+            var url = 'https://accounts.spotify.com/authorize';
+            url += '?response_type=token';
+            url += '&client_id=' + encodeURIComponent(spotify_client_id);
+            url += '&scope=' + encodeURIComponent(scope);
+            url += '&redirect_uri=' + encodeURIComponent(spotify_redirect_uri);
+            url += '&state=' + encodeURIComponent(generateRandomString(16));
+            window.location = url;
+        }
+
         function add_user(){
             curr_user = document.getElementById("curr_user").value;
             socketio.emit("add_user", {user:curr_user});
@@ -422,6 +484,7 @@
                     </div>
         </div>
         </div>
+        <button type="button" class="btn btn-outline-primary btn-sm" onclick="connect_to_spotify()">Connect To Spotify</button>
 
         <div class = "login">
 
@@ -435,14 +498,14 @@
 
         <div class = "container">
             <div class = "row">
-                
-                <!--ad placeholder--> 
+
+                <!--ad placeholder-->
                 <div class = "col-3 bg-info">
                     ad
                 </div>
 
                 <!--Create a Room-->
-                <div class = "col-6 bg-light"> 
+                <div class = "col-6 bg-light">
                     <h1 class= "text-center font-weight-bold bg-secondary" id = "new_room_head"> New Room </h1>
                     <div class = "lobby">
                         <p class = "text-center">
@@ -463,7 +526,7 @@
                 </div>
 
                 <!--Chat-->
-                <div class = "col-3 bg-primary"> 
+                <div class = "col-3 bg-primary">
                     <div class = "room">
 
                         <div class = "room-name font-weight-bold"></div>
@@ -484,12 +547,12 @@
                 <div class = "col-12 bg-white text-center"> ad
                     <div class = "row">
                         <!--ad placeholder-->
-                        <div class = "col-3 bg-info"> 
+                        <div class = "col-3 bg-info">
                             ad
                         </div>
-                        
+
                         <!--Rooms-->
-                        <div class = "col-6 bg-light"> 
+                        <div class = "col-6 bg-light">
                             <div class = "lobby">
                                 <h1 class="text-center font-weight-bold bg-primary" id = "room_list_head"> Rooms </h1>
                                 <div id="room_list" class="pre-scrollable text-center">
@@ -552,7 +615,7 @@
                         </div>
 
                         <!--users-->
-                        <div class = "col-3 bg-secondary"> 
+                        <div class = "col-3 bg-secondary">
                             <p class = "text-center">
                             <h1 class = "text-center font-weight-bold bg-light" id = "user_list_head"> Users </h1>
                             <div class = 'pre-scrollable' id="user_list"> </div>
