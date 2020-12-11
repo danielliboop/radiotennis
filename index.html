@@ -49,7 +49,7 @@
         var spotify_client_id = "d6593397d36a4419bd3b52adb7f610ff";
         var spotify_client_secret = "75f8a38e480f48c4b881f40b4e3776be";
         var spotify_redirect_uri = "http://auxill.io";
-        var scope = "user-read-private user-read-currently-playing streaming playlist-read-private playlist-read-collaborative"
+        var scope = "user-read-private user-read-currently-playing streaming playlist-read-private playlist-read-collaborative user-read-playback-state"
 
 
         socketio.on("username_taken", function() {
@@ -479,8 +479,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="text-center">
-                        <img src="/assets/title.png" alt="Let's Play Auxill.io!" width="500" height="500">
-                        <p>1 billion players currently online</p>
+                    <img src="https://auxillio-assets.s3.us-east-2.amazonaws.com/title.png" alt="Let's Play Auxill.io!">
+                    <p>1 billion players currently online</p>
                     </div>
         </div>
         </div>

@@ -6,12 +6,12 @@
 }
 
 body {
-    background-image: url("./assets/background4.png") ;
+    background-image: url("https://auxillio-assets.s3.us-east-2.amazonaws.com/background4.png") ;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     margin-top: 5%;
     margin-left: 2%;
-    background-image: url("./assets/background4.png");
+    background-image: url("https://auxillio-assets.s3.us-east-2.amazonaws.com/background4.png");
 }
 
 .room {
@@ -20,7 +20,7 @@ body {
     padding-right: 7%;
     padding-bottom: 5%;
     padding-top: 5%;
-    background-image: url("./assets/background4.png");
+    background-image: url("https://auxillio-assets.s3.us-east-2.amazonaws.com/background4.png");
 }
 
 .room-name {
