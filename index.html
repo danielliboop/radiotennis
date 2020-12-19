@@ -48,7 +48,7 @@
         let socketio = io.connect();
         var spotify_client_id = "d6593397d36a4419bd3b52adb7f610ff";
         var spotify_client_secret = "75f8a38e480f48c4b881f40b4e3776be";
-        var spotify_redirect_uri = "http://auxill.io";
+        var spotify_redirect_uri = "localhost:3456/callback";
         var scope = "user-read-private user-read-currently-playing streaming playlist-read-private playlist-read-collaborative"
 
 
@@ -407,6 +407,10 @@
             window.location = url;
         }
 
+        function get_email_from_spotify(){
+            console.log()
+        }
+
         function add_user(){
             curr_user = document.getElementById("curr_user").value;
             socketio.emit("add_user", {user:curr_user});
@@ -485,6 +489,7 @@
         </div>
         </div>
         <button type="button" class="btn btn-outline-primary btn-sm" onclick="connect_to_spotify()">Connect To Spotify</button>
+        <button type="button" class="btn btn-outline-primary btn-sm" onclick="get_email_from_spotify()">Get Email From Spotify</button>
 
         <div class = "login">
 

@@ -2,6 +2,7 @@
 var http = require("http"),
 	socketio = require("socket.io"),
 	fs = require("fs");
+	SpotifyWebApi = require('spotify-web-api-node');
 
 // Listen for HTTP connections.  This is essentially a miniature static file server that only serves our one file, index.html:
 var app = http.createServer(function (request, response) {
@@ -29,6 +30,14 @@ let locations = {}; 	//key: user			value: room
 let banned_users = {} 	//key: room name	value: set of users that are banned
 let private_rooms = {} 	//key: room name	value: password
 let room_colors = {"Lobby": "white"} 	//key: room name	value: color
+var spotify_client_id = "d6593397d36a4419bd3b52adb7f610ff";
+var spotify_client_secret = "75f8a38e480f48c4b881f40b4e3776be";
+var spotify_redirect_uri = "localhost:3456/callback";
+var spotifyApi = new SpotifyWebApi({
+	clientId: spotify_client_id,
+	clientSecret: spotify_client_secret,
+	redirectUri: spotify_redirect_uri
+  });
 
 
 // Do the Socket.IO magic:
