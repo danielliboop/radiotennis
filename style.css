@@ -6,13 +6,32 @@
 }
 
 body {
-    background-image: url("https://auxillio-assets.s3.us-east-2.amazonaws.com/background4.png") ;
+    background-image: url("https://auxillio-assets.s3.us-east-2.amazonaws.com/background4.png");
+    background-attachment: fixed;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     margin-top: 5%;
     margin-left: 2%;
-    background-image: url("https://auxillio-assets.s3.us-east-2.amazonaws.com/background4.png");
 }
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+  }
+
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
 
 .room {
     border: 1px solid lightgrey;
@@ -20,7 +39,6 @@ body {
     padding-right: 7%;
     padding-bottom: 5%;
     padding-top: 5%;
-    background-image: url("https://auxillio-assets.s3.us-east-2.amazonaws.com/background4.png");
 }
 
 .room-name {
