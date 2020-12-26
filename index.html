@@ -9,9 +9,9 @@
       <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-      <link href="/style.css" rel="stylesheet" type="text/css">
+     
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+      <link href="/style.css" rel="stylesheet" type="text/css">
       <script type="text/javascript">
 
         window.onSpotifyWebPlaybackSDKReady = () => {
@@ -475,15 +475,20 @@
     </head>
 
     <body>
-          <!--Title image-->
+        <!-- social media icons -->
+        
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>  
+        
+        <!--Title image-->
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="text-center">
                     <img src="https://auxillio-assets.s3.us-east-2.amazonaws.com/title.png" style="width:400px; height:400px;" alt="Let's Play Auxill.io!">
                     <p>1 billion players currently online</p>
-                    </div>
-        </div>
+                </div>
+            </div>
         </div>
 
 
@@ -500,9 +505,15 @@
         <div class = "container">
             <div class = "row">
 
-                <!--ad placeholder-->
-                <div class = "col-3 bg-info">
-                    ad
+                <!--List of Rooms-->
+                <div class = "col-3 bg-white">
+                    <div class = "lobby">
+                        <h1 class="d-flex justify-content-center font-weight-bold text-primary" id = "room_list_head"> Rooms </h1>
+                        <div id="room_list" class="pre-scrollable text-center">
+                        </div>
+                        <br>
+                        <hr>
+                    </div>
                 </div>
 
                 <!--Create a Room-->
@@ -529,20 +540,17 @@
                     </div>
                 </div>
 
-                <!--Chat-->
-                <div class = "col-3 bg-primary">
-                    <div class = "room bg-primary">
-
-                        <div class = "room-name font-weight-bold"></div>
-
-                        <div class="pre-scrollable" id="chatlog"></div>
-
-                        <input type="text" id="message_input"/>
-                        <button type="button" class="btn btn-warning btn-sm" onclick="sendMessage()">Send</button>
-                        <input type="checkbox" id="bold"> Bold
-                        <input type="checkbox" id="italics"> Italics
-
-                    </div>
+                <!--Users-->
+                <div class = "col-3 bg-secondary">
+                    <p class = "text-center">
+                    <h1 class = "d-flex justify-content-center font-weight-bold text-white" id = "user_list_head"> Users </h1>
+                    <div class = 'pre-scrollable' id="user_list"> </div>
+                    <input type="text" id="dm_input"/>
+                    <div id = dm_submit></div>
+                    <br>
+                    <h1 id = "banned_user_list_head"> Banned Users </h1>
+                    <div class = 'pre-scrollable' id="banned_user_list"> </div>
+                    </p>
                 </div>
 
             </div>
@@ -555,14 +563,10 @@
                             ad
                         </div>
 
-                        <!--Rooms-->
+                        <!--GIF-->
                         <div class = "col-6 bg-white">
-                            <div class = "lobby">
-                                <h1 class="d-flex justify-content-center font-weight-bold text-primary" id = "room_list_head"> Rooms </h1>
-                                <div id="room_list" class="pre-scrollable text-center">
-                                </div>
-                                <br>
-                                <hr>
+                            <div class = "col-12">
+                                <img src="https://media.giphy.com/media/4oMoIbIQrvCjm/giphy.gif" style="width:500px; height:400px;" alt="BartSimpsonGIF">
                             </div>
 
                             <!--accordion-->
@@ -579,7 +583,9 @@
                                   <div id="collapseOne2" class="collapse" aria-labelledby="headingOne2"
                                     data-parent="#accordionExample275">
                                     <div class="card-body">
-                                      game description
+                                        Auxill.io is a free multiplayer music sharing and guessing game. One game consists of a few rounds in which every round someone plays songs from their Spotify account and others have to guess either the song title or artist to gain points!
+The person with the most points at the end of game will then be crowned the winner!
+
                                     </div>
                                   </div>
                                 </div>
@@ -595,7 +601,7 @@
                                   <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2"
                                     data-parent="#accordionExample275">
                                     <div class="card-body">
-                                      gameplay description
+                                        Each room will be made up of players and a DJ. The DJ logs into their Spotify account and plays random songs, the harder to guess the better. Each time the DJ plays a song, you must guess the song title or artist in 90 seconds, and type your guess into the chat to gain points. Be quick, the earlier you guess a song the more points you get!
                                     </div>
                                   </div>
                                 </div>
@@ -618,17 +624,20 @@
                               </div>
                         </div>
 
-                        <!--users-->
-                        <div class = "col-3 bg-secondary">
-                            <p class = "text-center">
-                            <h1 class = "d-flex justify-content-center font-weight-bold text-white" id = "user_list_head"> Users </h1>
-                            <div class = 'pre-scrollable' id="user_list"> </div>
-                            <input type="text" id="dm_input"/>
-                            <div id = dm_submit></div>
-                            <br>
-                            <h1 id = "banned_user_list_head"> Banned Users </h1>
-                            <div class = 'pre-scrollable' id="banned_user_list"> </div>
-                            </p>
+                        <!--Chat-->
+                        <div class = "col-3 bg-primary">
+                            <div class = "room bg-primary">
+        
+                                <div class = "room-name font-weight-bold"></div>
+        
+                                <div class="pre-scrollable" id="chatlog"></div>
+        
+                                <input type="text" class="text-dark" id="message_input"/>
+                                <button type="button" class="btn btn-warning btn-sm" onclick="sendMessage()">Send</button>
+                                <input type="checkbox" id="bold"> Bold
+                                <input type="checkbox" id="italics"> Italics
+        
+                            </div>
                         </div>
                     </div>
                 </div>
