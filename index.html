@@ -470,6 +470,13 @@
             socketio.emit("unban_user", {user_to_unban: user_to_unban, user:curr_user, room: curr_room} );
         }
 
+
+        //GIPHY API//
+        document.getElementById("gif-button").addEventListener("click", ProduceGIF);
+            
+        function ProduceGIF() {
+            document.getElementById("gif-music").innerHTML= "Hello World" ;
+        }
       </script>
 
     </head>
@@ -565,8 +572,9 @@
 
                         <!--GIF-->
                         <div class = "col-6 bg-white">
-                            <div class = "col-12">
-                                <img src="https://media.giphy.com/media/4oMoIbIQrvCjm/giphy.gif" style="width:500px; height:400px;" alt="BartSimpsonGIF">
+                            <div class = "col-12" id= "gif-music">
+                                <img src="https://media.giphy.com/media/tqfS3mgQU28ko/giphy.gif" style="width:500px; height:400px;" alt="gif">
+                                <button type="button" class="btn btn-danger btn-sm" id="gif-button">New GIF</button>
                             </div>
 
                             <!--accordion-->
