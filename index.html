@@ -81,6 +81,8 @@
                         <input type="checkbox" id="bold"> Bold
                         <input type="checkbox" id="italics"> Italics
 
+                        <input type="text" id="uri-input">
+
                         <button type="button" id="play-song-btn" class="btn btn-warning btn-sm">Play Song</button>
                         <audio id="audio-src" preload="auto"></audio>
 
@@ -626,7 +628,8 @@
             }
 
             document.getElementById("play-song-btn").addEventListener("click", function(event) {
-              var track = spotifyApi.getTrack("312WNtMs3F28cUukaPY9bo");
+              console.log("URI INPUT VALUE" + document.getElementById("uri-input").value);
+              var track = spotifyApi.getTrack(document.getElementById("uri-input").value);
               track.then(result => document.getElementById("audio-src").src = result.preview_url);
               document.getElementById("audio-src").play();
               console.log(track);
